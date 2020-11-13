@@ -35,6 +35,13 @@ function init() {
         if (comparedHour < currentHour) {
             $(this).parent().parent().next().children('textarea').addClass('past');
         }
+        else if (comparedHour > currentHour) {
+            $(this).parent().parent().next().children('textarea').addClass('future');
+        }
+        else if (comparedHour = currentHour) {
+            $(this).parent().parent().next().children('textarea').addClass('future');
+        }
+        
     })
 }
 
