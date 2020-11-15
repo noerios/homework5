@@ -1,7 +1,8 @@
-var currentDay= document.getElementById("currentDay");
-var currentTime= document.getElementById("currentTime");
-//var rowTime= document.getElementById("hour");
-//var rowSection= document.getElementById("row");
+//setting the jumbotron time elements
+
+var currentDay = document.getElementById("currentDay");
+var currentTime = document.getElementById("currentTime");
+
 
 
 
@@ -14,20 +15,16 @@ var time = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6
 function init() {
     for(var i = 0; i < time.length; i++) {
         $('.container').append(`
-        <div class="row custom-row">
-        <div class="time-block">
-          <p><span class="hour" datatime="${timeNumber[i]}"></span>${time[i]}</p>
+        <div class="row custom-row row-no-gutters">
+            <div class="time-block col-1">
+                <p><span class="hour" datatime="${timeNumber[i]}"></span>${time[i]}</p>
+            </div>
+            <div class="col-10 custom-column id="input" "><textarea class="description col-12">add your tasks here</textarea></div>
+            <button class="saveBtn col-1">Save</button>
         </div>
-        <div class="col-10">
-          <textarea class="description col-12">user input text here</textarea> 
-        </div>
-        <button class="saveBtn">
-          Save
-        </button>
-      </div>
         `);
     }
-
+//updting row color based on past, present, or future
     $('.hour').each(function() {
         var comparedHour = $(this).attr('datatime');
         var currentHour = moment().hour()
@@ -39,7 +36,7 @@ function init() {
             $(this).parent().parent().next().children('textarea').addClass('future');
         }
         else if (comparedHour = currentHour) {
-            $(this).parent().parent().next().children('textarea').addClass('future');
+            $(this).parent().parent().next().children('textarea').addClass('present');
         }
         
     })
@@ -47,24 +44,30 @@ function init() {
 
 init();
 
+var saveButton = document.getElementById("button")
 
+//parse?
+function saveTasks() {
+    var tasks = localStorage.getItem("input");
 
-
-//put rows into an array?
-// foreach??
-
-
-//create a function that compares currentTime to rowTime
-//for loop goes through the rows and compares time to current time
-    //if rowTime is equal to currentTime - turn row red
-    //if rowTime is greater than currentTime - turn row green
-    //if rowTime is less than currentTime - turn row gray
-//if ( rowTime > currentTime) {
-//    console.log("True")
-
-//rowSection.style.backgroundColor = "red";
-//}
-//else console.log("False")
+    userInput.textContent = task;
+    console.log(task);
+}
 
 //store user input on local storage
-// .parseInt to change string to number
+saveButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    var task = document.querySelector(".textarea").value;
+    localStorage.setItem("task", task);
+    console.log(task);
+});
+
+//     localStorage.setItem("9am", " ")
+//     localStorage.setItem("10am", " ")
+
+
+    // localStorage.setItem("user-input", " ");
+    // document.getElementById("input").innerHTML =
+    // localStorage.getItem("user-input");
+    // console.log("user-input");
+//}
