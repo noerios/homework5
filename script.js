@@ -44,9 +44,8 @@ function init() {
 
 init();
 
-var saveButton = document.getElementById("button")
+var saveButton = document.getElementsByClassName(".saveBtn");
 
-//parse?
 function saveTasks() {
     var tasks = localStorage.getItem("input");
 
@@ -55,8 +54,7 @@ function saveTasks() {
 }
 
 //store user input on local storage
-saveButton.addEventListener("click", function(event) {
-    event.preventDefault();
+saveButton.addEventListener("click", function() {
     var task = document.querySelector(".textarea").value;
     localStorage.setItem("task", task);
     console.log(task);
